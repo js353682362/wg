@@ -7,17 +7,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 /**
  * @（#）:SecurityConfiguration.java
  * @description: spring security的主过滤器
- *
+ * <p>
  * AbstractSecurityWebApplicationInitializer
  * @author: jsen 2018/8/8
  * @version: Version 1.0
@@ -39,6 +34,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(wgUserDetailsServiceBean);
+        // 用户和密码的信息验证通过动态查询数据库来验证。不采用内存中写死
+        // auth.authenticationProvider(new MyAuthenticationProvider());
     }
 
     /**
@@ -70,14 +67,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //        return new BCryptPasswordEncoder();
 //    }
 
+//    /**
+//     * password 方案三：支持多种编码，通过密码的前缀区分编码方式,推荐
+//     *
+//     * @return
+//     */
+//    @Bean
+//    PasswordEncoder passwordEncoder() {
+//        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+//    }
+
     /**
-     * password 方案三：支持多种编码，通过密码的前缀区分编码方式,推荐
+     * password 自定义编码 修改match  PasswordEncoderFactories.createDelegatingPasswordEncoder()
      *
      * @return
      */
     @Bean
     PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        return new MyBCryptPasswordEncoder();
     }
 
     /**

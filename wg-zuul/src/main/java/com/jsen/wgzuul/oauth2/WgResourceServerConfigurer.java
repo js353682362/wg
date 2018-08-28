@@ -2,21 +2,19 @@ package com.jsen.wgzuul.oauth2;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 
 /**
  * @（#）:WgResourceServerConfigurer.java
- * @description:
- *  主要功能 ： 类似于次级过滤器
+ * @description: 主要功能 ： 类似于次级过滤器
+ * order = 3的过滤器链
  * @author: jsen 2018/8/12
  * @version: Version 1.0
  */
 @Configuration
 @EnableResourceServer
-public class WgResourceServerConfigurer extends ResourceServerConfigurerAdapter{
+public class WgResourceServerConfigurer extends ResourceServerConfigurerAdapter {
 
     /**
      * resourceId
@@ -46,7 +44,7 @@ public class WgResourceServerConfigurer extends ResourceServerConfigurerAdapter{
         http.
                 authorizeRequests()
                 .antMatchers("/usernamepassword/token").permitAll()
-                .antMatchers("/users/**","/menus/**","/roles/**").hasRole("ADMIN")
+                .antMatchers("/users/**", "/menus/**", "/roles/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated();
     }
