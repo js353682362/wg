@@ -1,4 +1,4 @@
-package com.jsen.wgzuul.security;
+package com.jsen.wgzuul.security.authorize;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;

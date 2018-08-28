@@ -1,5 +1,6 @@
 package com.jsen.wgzuul.security;
 
+import com.jsen.wgzuul.security.authorize.MyBCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
@@ -67,25 +69,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //        return new BCryptPasswordEncoder();
 //    }
 
-//    /**
-//     * password 方案三：支持多种编码，通过密码的前缀区分编码方式,推荐
-//     *
-//     * @return
-//     */
-//    @Bean
-//    PasswordEncoder passwordEncoder() {
-//        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//    }
+    /**
+     * password 方案三：支持多种编码，通过密码的前缀区分编码方式,推荐
+     *
+     * @return
+     */
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
 
     /**
      * password 自定义编码 修改match  PasswordEncoderFactories.createDelegatingPasswordEncoder()
      *
      * @return
      */
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new MyBCryptPasswordEncoder();
-    }
+//    @Bean
+//    PasswordEncoder passwordEncoder() {
+//        return new MyBCryptPasswordEncoder();
+//    }
 
     /**
      * 主过滤器  定义需要过滤的url

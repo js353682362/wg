@@ -1,4 +1,4 @@
-package com.jsen.wgzuul.security;
+package com.jsen.wgzuul.security.authorize;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
