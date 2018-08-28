@@ -23,11 +23,11 @@ public class WgResourceServerConfigurer extends ResourceServerConfigurerAdapter{
      */
     public static final String RESOURCE_ID = "order";
 
-    @Override
-    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        // 如果关闭 stateless，则 accessToken 使用时的 session id 会被记录，后续请求不携带 accessToken 也可以正常响应
-        resources.resourceId(RESOURCE_ID).stateless(true);
-    }
+//    @Override
+//    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+//        // 如果关闭 stateless，则 accessToken 使用时的 session id 会被记录，后续请求不携带 accessToken 也可以正常响应
+//        resources.resourceId(RESOURCE_ID).stateless(true);
+//    }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -38,9 +38,16 @@ public class WgResourceServerConfigurer extends ResourceServerConfigurerAdapter{
          * NEVER 不会创建HttpSession 如果它已经存在 将可以使用HttpSession
          * STATELESS Spring Security永远不会创建HttpSession，它不会使用HttpSession来获取SecurityContext
          */
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
-        // 保险起见，防止被主过滤器链路拦截
-        http.requestMatchers().antMatchers("/qq/**");
-        http.authorizeRequests().anyRequest().authenticated();
+//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+//        // 保险起见，防止被主过滤器链路拦截
+//        http.requestMatchers().antMatchers("/oauth/**");
+//        http.authorizeRequests().anyRequest().authenticated();
+
+        http.
+                authorizeRequests()
+                .antMatchers("/usernamepassword/token").permitAll()
+                .antMatchers("/users/**","/menus/**","/roles/**").hasRole("ADMIN")
+                .anyRequest()
+                .authenticated();
     }
 }

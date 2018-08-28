@@ -1,8 +1,7 @@
 package com.jsen.wgzuul.service;
 
-import com.jsen.wgcommon.constant.WgCommonConst;
-import com.jsen.wgzuul.dao.SecUserDao;
-import com.jsen.wgzuul.entity.SecUser;
+import com.jsen.wgzuul.dao.SysUserDao;
+import com.jsen.wgzuul.entity.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +15,9 @@ import org.springframework.stereotype.Service;
 public class SecUserSV {
 
     @Autowired
-    private SecUserDao secUserDao;
+    private SysUserDao sysUserDao;
 
-    public SecUser findByLoginname(String loginName) {
-        return secUserDao.findUserByLoginName(loginName, WgCommonConst.TABLE.STATE_VALID);
+    public SysUser findByLoginname(String loginName) {
+        return sysUserDao.findUserByLoginName(loginName);
     }
 }

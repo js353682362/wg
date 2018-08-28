@@ -1,6 +1,6 @@
 package com.jsen.wgzuul.service;
 
-import com.jsen.wgzuul.dao.SecRoleDao;
+import com.jsen.wgzuul.dao.SysRoleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +15,9 @@ import java.util.List;
 @Service
 public class SecRoleSV {
     @Autowired
-    private SecRoleDao secRoleDao;
+    private SysRoleDao sysRoleDao;
 
     public List<String> findRoleListByUserId(Integer userId){
-        return secRoleDao.findRoleListByUserId(userId);
+        return sysRoleDao.findRoleListByUserId(userId);
     }
 }

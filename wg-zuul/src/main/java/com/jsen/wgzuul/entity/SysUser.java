@@ -6,25 +6,23 @@ package com.jsen.wgzuul.entity;
  * @author: jsen 2018/8/12
  * @version: Version 1.0
  */
-public class SecUser {
+public class SysUser {
     private Integer id;
 
     private String loginName;
 
-    private String userName;
+    private String name;
 
     private String password;
 
     private String email;
 
-    private Integer state;
-
-    public Integer getState() {
-        return state;
+    public String getName() {
+        return name;
     }
 
-    public void setState(Integer state) {
-        this.state = state;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getId() {
@@ -43,13 +41,6 @@ public class SecUser {
         this.loginName = loginName;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getPassword() {
         return password;

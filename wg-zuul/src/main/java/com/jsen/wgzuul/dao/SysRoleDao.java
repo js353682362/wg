@@ -11,7 +11,7 @@ import java.util.List;
  * @version: Version 1.0
  */
 @Mapper
-public interface SecRoleDao {
+public interface SysRoleDao {
 
     /**
      * 查找用户角色列表

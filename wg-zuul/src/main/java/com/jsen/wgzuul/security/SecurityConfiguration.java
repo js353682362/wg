@@ -46,17 +46,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @return
      */
-    @Bean
-    @Override
-    protected UserDetailsService userDetailsService() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String finalPassword = "{bcrypt}" + bCryptPasswordEncoder.encode("123456");
-
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("user1").password(finalPassword).authorities("USER").build());
-        manager.createUser(User.withUsername("user2").password(finalPassword).authorities("USER").build());
-        return manager;
-    }
+//    @Bean
+//    @Override
+//    protected UserDetailsService userDetailsService() {da
+//        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//        String finalPassword = "{bcrypt}" + bCryptPasswordEncoder.encode("123456");
+//
+//        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+//        manager.createUser(User.withUsername("user1").password(finalPassword).authorities("USER").build());
+//        manager.createUser(User.withUsername("user2").password(finalPassword).authorities("USER").build());
+//        return manager;
+//    }
 
     // password 方案一：明文存储，用于测试，不能用于生产
 //    @Bean

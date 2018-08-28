@@ -1,6 +1,6 @@
 package com.jsen.wgzuul.dao;
 
-import com.jsen.wgzuul.entity.SecUser;
+import com.jsen.wgzuul.entity.SysUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,13 +11,13 @@ import org.apache.ibatis.annotations.Param;
  * @version: Version 1.0
  */
 @Mapper
-public interface SecUserDao {
+public interface SysUserDao {
     /**
      * 根据登录名查找用户信息
      *
      * @param loginName
      * @return
      */
-    SecUser findUserByLoginName(@Param("loginName") String loginName,@Param("state") Integer state);
+    SysUser findUserByLoginName(@Param("loginName") String loginName);
 
 }
